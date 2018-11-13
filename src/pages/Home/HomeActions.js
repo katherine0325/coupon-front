@@ -1,4 +1,5 @@
 import alt from '../../lib/alt';
+import $ from 'jquery';
 
 class HomeActions
 {
@@ -12,29 +13,38 @@ class HomeActions
 		const _this = this;
 
 		$.ajax({
-		url: 'http://localhost:3001/api/tblist/list?coupon_end_time=' + _this.inputValue,
-		method: 'GET',
-		headers: {
-			Authorization: 'Bearer ' + _this.token
-		},
-		success: data => {
-			HomeActions.searchSuccess(data);
-		},
-		fail: () => {
-
-		}
+			url: 'http://localhost:3001/api/tblist/list',
+			method: 'GET',
+			success: data => {
+				this.actions.searchSuccess(data);
+			},
+			fail: err => {
+				console.log(err)
+			}
 		})
 	}
 
 	choose(id) {
-		const _this = this;
-
 		$.ajax({
 			url: 'http://localhost:3001/api/tblist/update?id=' + id,
 			method: 'PUT',
 			success: data => {
 				if (data.ok === 1) {
-					_this.search();
+					this.actions.search();
+				}
+			}
+		})
+	}
+
+	useless(tblist) {
+		const ids = tblist.map(i => i._id);
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/updateUseless',
+			method: 'PUT',
+			data: {ids},
+			success: res => {
+				if (res.ok === 1) {
+					this.actions.search();
 				}
 			}
 		})

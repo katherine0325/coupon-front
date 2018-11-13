@@ -1,4 +1,5 @@
 import alt from '../../lib/alt';
+import $ from 'jquery';
 
 class FilterActions
 {
@@ -7,29 +8,38 @@ class FilterActions
 			'searchSuccess',
 			'taoTokenChange',
 			'couponTaoTokenChange',
+			'fillTokenSuccess',
 		)
 	}
 
 	search() {
-		const _this = this;
 		$.ajax({
 			url: 'http://localhost:3001/api/tblist/filter',
 			method: 'GET',
 			success: data => {
-				FilterActions.searchSuccess(data);
+				this.actions.searchSuccess(data);
 			}
 		})
 	}
 
 	fillToken(id, taoToken, couponTaoToken) {
-		const _this = this;
-
 		$.ajax({
-			url: 'http://localhost:3001/api/tblist/update_tao_token',
+			url: 'http://localhost:3001/api/tblist/updateTaoToken',
 			method: 'PUT',
-			json: {id, taoToken, couponTaoToken},
+			data: {id, taoToken, couponTaoToken},
 			success: data => {
-				_this.search();
+				this.actions.fillTokenSuccess();
+			}
+		})
+	}
+
+	delete(id) {
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/updateUseless',
+			method: 'PUT',
+			data: {ids: [id]},
+			success: res => {
+				alert('删除成功');
 			}
 		})
 	}

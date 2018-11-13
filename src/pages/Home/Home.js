@@ -35,6 +35,7 @@ class Home extends Component {
             )
           })}
         </div>
+        <button onClick={HomeActions.useless.bind(this, this.state.tblist)}>本页选完</button>
       </div>
     )
   }

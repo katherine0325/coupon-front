@@ -20,6 +20,11 @@ class FilterStore {
   couponTaoTokenChange(e) {
     this.curCouponTaoToken = e.target.value;
   }
+
+  fillTokenSuccess() {
+    this.curTaoToken = '';
+    this.curCouponTaoToken = '';
+  }
 }
 
 export default alt.createStore(FilterStore);

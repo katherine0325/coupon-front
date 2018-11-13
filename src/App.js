@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from './pages/Home/Home';
-import Filter form './pages/Filter/Filter';
+import Filter from './pages/Filter/Filter';
 
 const AppRouter = () => (
   <Router>
