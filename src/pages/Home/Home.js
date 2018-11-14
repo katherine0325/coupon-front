@@ -25,6 +25,10 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <div>
+          <input type='file' onChange={HomeActions.getFilePath.bind(e)} />
+          <button onClick={HomeActions.upload.bind(this, this.state.filePath)}>提交</button>
+        </div>
         <button onClick={HomeActions.useless.bind(this, this.state.tblist)}>本页选完</button>
         <div>
           {this.state.tblist.map(i => {

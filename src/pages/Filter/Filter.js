@@ -33,6 +33,8 @@ class Filter extends Component {
     return (
       <div>
         <div>共计有{this.state.chooseCount}个数据等待填写token</div>
+        <div>共计有{this.state.preSyncCount}个数据准备好可以sync了</div>
+        <div><button onClick={FilterActions.sync}>sync list item</button></div>
         {this.state.filter_list.map(i => (
           <div>
             <img src={i.image_url} style={{width: 400}}/>

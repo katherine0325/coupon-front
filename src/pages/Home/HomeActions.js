@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import alt from '../../lib/alt';
 import $ from 'jquery';
 
@@ -5,7 +6,8 @@ class HomeActions
 {
 	constructor() {
 		this.generateActions(
-			'searchSuccess'
+			'searchSuccess',
+			'getFilePath',
 		)
 	}
 
@@ -30,7 +32,7 @@ class HomeActions
 			method: 'PUT',
 			success: data => {
 				if (data.ok === 1) {
-					console.log('choose success')
+					notification.success({message: '选择成功'});
 				}
 			}
 		})
@@ -46,6 +48,23 @@ class HomeActions
 				if (res.ok === 1) {
 					this.actions.search();
 				}
+			}
+		})
+	}
+
+	upload(filePath) {
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/import',
+			method: 'POST',
+			data: {
+				filePath: filePath,
+				head: ['name', 'pid']  // 本行待定，待修改
+			},
+			success: res => {
+				this.actions.search();
+			},
+			fail: err => {
+				notification.error({message: 'upload file failed'});
 			}
 		})
 	}

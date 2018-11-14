@@ -66,6 +66,19 @@ class FilterActions
 			}
 		})
 	}
+
+	sync() {
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/sync',
+			method: 'GET',
+			success: res => {
+				notification.success({message: 'sync successfully'});
+			},
+			fail: res => {
+				notification.error({message: 'sync failed'});
+			}
+		})
+	}
 }
 
 export default alt.createActions(FilterActions);
