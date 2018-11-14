@@ -25,6 +25,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <button onClick={HomeActions.useless.bind(this, this.state.tblist)}>本页选完</button>
         <div>
           {this.state.tblist.map(i => {
             return (

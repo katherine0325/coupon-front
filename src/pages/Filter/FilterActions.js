@@ -9,6 +9,8 @@ class FilterActions
 			'taoTokenChange',
 			'couponTaoTokenChange',
 			'fillTokenSuccess',
+			'chooseCountSuccess',
+			'preSyncCountSuccess',
 		)
 	}
 
@@ -29,6 +31,7 @@ class FilterActions
 			data: {id, taoToken, couponTaoToken},
 			success: data => {
 				this.actions.fillTokenSuccess();
+				this.actions.preSyncCount();
 			}
 		})
 	}
@@ -40,6 +43,26 @@ class FilterActions
 			data: {ids: [id]},
 			success: res => {
 				alert('删除成功');
+			}
+		})
+	}
+
+	chooseCount() {
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/chooseCount',
+			method: 'GET',
+			success: res => {
+				this.actions.chooseCountSuccess(res);
+			}
+		})
+	}
+
+	preSyncCount() {
+		$.ajax({
+			url: 'http://localhost:3001/api/tblist/preSyncCount',
+			method: 'GET',
+			success: res => {
+				this.actions.preSyncCountSuccess(res);
 			}
 		})
 	}

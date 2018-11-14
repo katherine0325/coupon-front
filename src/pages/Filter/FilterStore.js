@@ -7,6 +7,8 @@ class FilterStore {
     this.filter_list = [];
     this.curTaoToken = '';
     this.curCouponTaoToken = '';
+    this.chooseCount = 0;
+    this.preSyncCount = 0;
   }
 
   searchSuccess(data) {
@@ -24,6 +26,14 @@ class FilterStore {
   fillTokenSuccess() {
     this.curTaoToken = '';
     this.curCouponTaoToken = '';
+  }
+
+  chooseCountSuccess(count) {
+    this.chooseCount = count;
+  }
+
+  preSyncCountSuccess(count) {
+    this.preSyncCount = count;
   }
 }
 

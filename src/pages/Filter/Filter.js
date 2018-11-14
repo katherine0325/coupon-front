@@ -12,6 +12,8 @@ class Filter extends Component {
     FilterStore.listen(this.onChange);
 
     FilterActions.search();
+    FilterActions.chooseCount();
+    FilterActions.preSyncCount();
   }
 
   componentWillUnmount() {
@@ -30,14 +32,12 @@ class Filter extends Component {
   render() {
     return (
       <div>
-        <div>共计有「」个数据等待填写token</div>
+        <div>共计有{this.state.chooseCount}个数据等待填写token</div>
         {this.state.filter_list.map(i => (
           <div>
             <img src={i.image_url} style={{width: 400}}/>
-            <div>
-              <button onClick={FilterActions.delete.bind(this, i._id)}>删除</button>
-            </div>
-            <div>填完token，待sync的数据量有[]</div>
+            <button onClick={FilterActions.delete.bind(this, i._id)}>删除</button>
+            {this.state.preSyncCount}
             <div>
               <input type='text' value={i.url} onClick={this.copy.bind(this)} />
             </div>

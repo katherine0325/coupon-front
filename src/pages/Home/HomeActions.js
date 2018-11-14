@@ -30,7 +30,7 @@ class HomeActions
 			method: 'PUT',
 			success: data => {
 				if (data.ok === 1) {
-					this.actions.search();
+					console.log('choose success')
 				}
 			}
 		})
