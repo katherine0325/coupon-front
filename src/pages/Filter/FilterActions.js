@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import alt from '../../lib/alt';
 import $ from 'jquery';
 
